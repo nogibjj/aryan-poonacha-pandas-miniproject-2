@@ -7,6 +7,10 @@ Be creative! do whatever you want!
 - Start a web application
 - Import things from your .base module
 """
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
 def test():
     return 'test'
 
@@ -26,4 +30,18 @@ def main():
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
-    print("This will do something")
+    df = pd.read_csv("data/cars.csv")
+    print(df.describe())
+
+    # Create the scatter plot
+    plt.figure(figsize=(10, 6))  # Adjust the figure size as needed
+    plt.scatter(df['mpg'], df['hp'], c='b', marker='o', edgecolors='k', alpha=0.6)
+    plt.title('Scatter Plot of MPG vs. HP')
+    plt.xlabel('MPG')
+    plt.ylabel('HP')
+
+    # Save the visualization as an image file
+    plt.savefig('output/scatter_plot.png', dpi=300, bbox_inches='tight')
+
+    # Display the plot (optional)
+    plt.show()
